@@ -35,7 +35,7 @@ public class MyHashTable<K, V> {
             chainArray.add(null);
     }
     public int hash(K key) {
-        return Objects.hashCode(key);
+        return Objects.hashCode(key) % numberOfChains;
     }
     public void put(K key, V value) {
         int hash = hash(key);
