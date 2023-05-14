@@ -4,7 +4,7 @@ public class Main {
         table.put("A", 31);
         table.put("B", 32);
         table.put("C", 33);
-        table.put("D", 31);
+        table.put("A", 32);
 
         System.out.println("Value of A: " + table.get("A"));
         System.out.println("Value of 1: " + table.get("1"));

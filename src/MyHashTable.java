@@ -2,31 +2,34 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class MyHashTable<K, V> {
+    //HashNode is a key-value pair that references the next HashNode like a linked list
     private class HashNode<K, V> {
-
         private K key;
         private V value;
         private HashNode<K, V> next;
-
+        //Constructor
         public HashNode(K key, V value) {
             this.key = key;
             this.value = value;
         }
-
+        // toString returns the key-value pair in string format
         @Override
         public String toString() {
             return "{" + key + " " + value + "}";
         }
     }
     private ArrayList<HashNode<K, V>> chainArray;
+    // default number of chains
     private int numberOfChains = 11;
     private int size;
+    // Default constructor
     public MyHashTable() {
         chainArray = new ArrayList<>();
         size = 0;
         for (int i = 0; i < numberOfChains; i++)
             chainArray.add(null);
     }
+    // Constructor with specified number of chains
     public MyHashTable(int numberOfChains) {
         chainArray = new ArrayList<>();
         size = 0;
@@ -34,10 +37,13 @@ public class MyHashTable<K, V> {
         for (int i = 0; i < numberOfChains; i++)
             chainArray.add(null);
     }
+    // hash method returns the hash value of the key
     public int hash(K key) {
         //System.out.println("Hash code of key " + key + " is " + Objects.hashCode(key) % numberOfChains);
         return Objects.hashCode(key) % numberOfChains;
     }
+    // put method inserts a hash node into hash table.
+    // If hash collision happens it inserts hash node into the next node of the chain array
     public void put(K key, V value) {
         int hash = hash(key);
         HashNode<K, V> newHashNode = new HashNode<K, V>(key,value);
@@ -57,6 +63,7 @@ public class MyHashTable<K, V> {
             size++;
         }
     }
+    // get method returns the value of entered key
     public V get(K key) {
         int hash = hash(key);
         if (chainArray.get(hash) != null) {
@@ -68,6 +75,7 @@ public class MyHashTable<K, V> {
         }
         return null;
     }
+    // remove method deletes the key from hash table
     public V remove(K key) {
         int hash = hash(key);
         HashNode<K, V> temp = chainArray.get(hash);
@@ -87,6 +95,7 @@ public class MyHashTable<K, V> {
         } else {
             chainArray.set(hash, temp.next);
         }
+        size--;
         return temp.value;
     }
 }
