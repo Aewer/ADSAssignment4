@@ -40,16 +40,20 @@ public class MyHashTable<K, V> {
     }
     public void put(K key, V value) {
         int hash = hash(key);
-        HashNode<K, V> hashNode = new HashNode<K, V>(key,value);
+        HashNode<K, V> newHashNode = new HashNode<K, V>(key,value);
         if (chainArray.get(hash) == null) {
-            chainArray.set(hash, hashNode);
+            chainArray.set(hash, newHashNode);
             size++;
         } else {
             HashNode temp = chainArray.get(hash);
-            while(temp.next != null) {
+            while(temp != null) {
+                if (temp.key.equals(key)) {
+                    temp.value = value;
+                    return;
+                }
                 temp = temp.next;
             }
-            temp.next = hashNode;
+            temp.next = newHashNode;
             size++;
         }
     }
@@ -64,4 +68,5 @@ public class MyHashTable<K, V> {
         }
         return null;
     }
+
 }
