@@ -35,6 +35,7 @@ public class MyHashTable<K, V> {
             chainArray.add(null);
     }
     public int hash(K key) {
+        //System.out.println("Hash code of key " + key + " is " + Objects.hashCode(key) % numberOfChains);
         return Objects.hashCode(key) % numberOfChains;
     }
     public void put(K key, V value) {
@@ -42,12 +43,25 @@ public class MyHashTable<K, V> {
         HashNode<K, V> hashNode = new HashNode<K, V>(key,value);
         if (chainArray.get(hash) == null) {
             chainArray.set(hash, hashNode);
+            size++;
         } else {
             HashNode temp = chainArray.get(hash);
             while(temp.next != null) {
                 temp = temp.next;
             }
             temp.next = hashNode;
+            size++;
         }
+    }
+    public V get(K key) {
+        int hash = hash(key);
+        if (chainArray.get(hash) != null) {
+            HashNode<K, V> temp = chainArray.get(hash);
+            while(!temp.key.equals(key) && temp.next != null) {
+                temp = temp.next;
+            }
+            return temp.value;
+        }
+        return null;
     }
 }
