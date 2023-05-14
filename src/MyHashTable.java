@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MyHashTable<K, V> {
     private class HashNode<K, V> {
@@ -33,5 +34,7 @@ public class MyHashTable<K, V> {
         for (int i = 0; i < numberOfChains; i++)
             chainArray.add(null);
     }
-
+    public int hash(K key) {
+        return Objects.hashCode(key);
+    }
 }
