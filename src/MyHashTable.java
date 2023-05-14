@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class MyHashTable<K, V> {
     private class HashNode<K, V> {
 
@@ -15,15 +17,21 @@ public class MyHashTable<K, V> {
             return "{" + key + " " + value + "}";
         }
     }
-    private HashNode<K, V>[] chainArray;
-    private int M;
+    private ArrayList<HashNode<K, V>> chainArray;
+    private int numberOfChains = 11;
     private int size;
     public MyHashTable() {
+        chainArray = new ArrayList<>();
         size = 0;
-        M = 11;
+        for (int i = 0; i < numberOfChains; i++)
+            chainArray.add(null);
     }
-    public MyHashTable(int M) {
+    public MyHashTable(int numberOfChains) {
+        chainArray = new ArrayList<>();
         size = 0;
-        this.M = M;
+        this.numberOfChains = numberOfChains;
+        for (int i = 0; i < numberOfChains; i++)
+            chainArray.add(null);
     }
+
 }
