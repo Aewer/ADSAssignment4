@@ -37,4 +37,17 @@ public class MyHashTable<K, V> {
     public int hash(K key) {
         return Objects.hashCode(key);
     }
+    public void put(K key, V value) {
+        int hash = hash(key);
+        HashNode<K, V> hashNode = new HashNode<K, V>(key,value);
+        if (chainArray.get(hash) == null) {
+            chainArray.set(hash, hashNode);
+        } else {
+            HashNode temp = chainArray.get(hash);
+            while(temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = hashNode;
+        }
+    }
 }
