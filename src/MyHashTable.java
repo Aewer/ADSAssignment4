@@ -21,7 +21,7 @@ public class MyHashTable<K, V> {
     private ArrayList<HashNode<K, V>> chainArray;
     // default number of chains
     private int numberOfChains = 11;
-    private int size;
+    public int size;
     // Default constructor
     public MyHashTable() {
         chainArray = new ArrayList<>();
@@ -51,7 +51,7 @@ public class MyHashTable<K, V> {
             chainArray.set(hash, newHashNode);
             size++;
         } else {
-            HashNode temp = chainArray.get(hash);
+            HashNode<K, V> temp = chainArray.get(hash);
             while(temp != null) {
                 if (temp.key.equals(key)) {
                     temp.value = value;
@@ -97,5 +97,17 @@ public class MyHashTable<K, V> {
         }
         size--;
         return temp.value;
+    }
+    // Returns the key corresponding to value
+    public K getKey(V value) {
+        for (HashNode<K, V> temp : chainArray) {
+            while (temp != null) {
+                if (temp.value.equals(value)) {
+                    return temp.key;
+                }
+                temp = temp.next;
+            }
+        }
+        return null;
     }
 }
