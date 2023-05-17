@@ -98,6 +98,17 @@ public class MyHashTable<K, V> {
         size--;
         return temp.value;
     }
+    public boolean contains(V value) {
+        for (HashNode<K, V> temp : chainArray) {
+            while (temp != null) {
+                if (temp.value.equals(value)) {
+                    return true;
+                }
+                temp = temp.next;
+            }
+        }
+        return false;
+    }
     // Returns the key corresponding to value
     public K getKey(V value) {
         for (HashNode<K, V> temp : chainArray) {

@@ -13,6 +13,6 @@ public class Main {
         System.out.println("Value of D: " + table.get("D"));
         System.out.println("Size:" + table.size);
         System.out.println("Key of value 4 is " + table.getKey(4));
-
+        System.out.println("Contains value 3: " + table.contains(3));
     }
 }
