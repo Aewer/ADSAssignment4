@@ -130,7 +130,7 @@ public class MyHashTable<K, V> {
         else {
             HashNode<K, V> temp = chainArray.get(hash);
             while (temp != null) {
-                if (temp.key.equals(key)) {
+                if (temp.key.equals(key) && temp.value.equals(old_value)) {
                     temp.value = new_value;
                     break;
                 }
