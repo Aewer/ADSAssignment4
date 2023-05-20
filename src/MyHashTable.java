@@ -121,4 +121,21 @@ public class MyHashTable<K, V> {
         }
         return null;
     }
+    public void replace(K key, V old_value, V new_value) {
+        int hash = hash(key);
+        HashNode<K, V> newHashNode = new HashNode<K, V>(key, new_value);
+        if (chainArray.get(hash) == null) {
+            chainArray.set(hash, newHashNode);
+        }
+        else {
+            HashNode<K, V> temp = chainArray.get(hash);
+            while (temp != null) {
+                if (temp.key.equals(key)) {
+                    temp.value = new_value;
+                    break;
+                }
+                temp = temp.next;
+            }
+        }
+    }
 }

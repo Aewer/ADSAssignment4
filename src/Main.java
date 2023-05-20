@@ -7,12 +7,19 @@ public class Main {
         table.put("D", 4);
 
         System.out.println("Value of A: " + table.get("A"));
-        System.out.println("Value of 1: " + table.get("1"));
+        System.out.println("Value of B: " + table.get("B"));
         System.out.println("Value of C: " + table.get("C"));
-        //table.remove("A");
         System.out.println("Value of D: " + table.get("D"));
+        table.remove("C");
+        table.replace("A", 1, 5);
+        table.replace("B", 2, 10);
+        table.replace("D", 4, 18);
+        System.out.println("Replaced value of A: " + table.get("A"));
+        System.out.println("Replaced value of B: " + table.get("B"));
+        System.out.println("Replaced value of D: " + table.get("D"));
+        System.out.println("Removed value of C: " + table.get("C"));
         System.out.println("Size:" + table.size);
-        System.out.println("Key of value 4 is " + table.getKey(4));
+        System.out.println("Key of value 5 is " + table.getKey(5));
         System.out.println("Contains value 3: " + table.contains(3));
     }
 }
